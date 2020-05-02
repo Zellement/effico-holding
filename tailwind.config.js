@@ -2,15 +2,14 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        mono: [
-          'IBM Plex Mono',
-          'Menlo',
-          'Monaco',
-          'Consolas',
-          '"Liberation Mono"',
-          '"Courier New"',
-          'monospace',
+        sans: [
+          'Raleway', 'sans-serif'
         ],
+      },
+      colors: {
+        primary: {
+          default: '#135613',
+        },
       },
     }
   },

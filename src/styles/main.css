@@ -15,3 +15,11 @@
 
 /* Tailwind Utils */
 @import 'tailwindcss/utilities';
+
+.triangle-topleft {
+  @apply fixed top-0 left-0 z-30;
+    width: 0;
+    height: 0;
+    border-top: 120px solid #1792BE;
+    border-right: 120px solid transparent;
+  }

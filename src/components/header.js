@@ -1,32 +1,41 @@
 import React from "react"
-import { Link } from "gatsby"
+import { StaticQuery, graphql } from "gatsby"
+import Img from 'gatsby-image'
 import PropTypes from "prop-types"
-import { motion } from 'framer-motion'
-import Nav from '../components/nav'
 
 const Header = ({ siteTitle }) => (
-  <header className="py-8 md:py-16">
-    
-    <div className="container">
-      <div className="flex flex-wrap items-center mb-4">
-        <motion.button
-          className="w-5 h-5 mr-3 block bg-black rounded"
-          animate={{ rotate: 180 }}
-          transition={{
-            loop: Infinity,
-            duration: 2,
-            ease: "anticipate"
-          }}
-        />
+  <header className="p-8 mx-auto w-auto max-w-sm text-center">
 
-        <Link className="font-bold block text-lg md:text-xl inline-block" to="/">
-          {siteTitle}
-        </Link>
-      </div>
+    <div class="triangle-topleft"></div>
+    <p className="font-bold fixed top-0 left-0 z-50 transform -rotate-45 text-xs mt-6 ml-1 text-white">New website <br />coming soon!</p>
 
-      <Nav />
+    <StaticQuery
+      query={graphql`
 
-    </div>
+       query MyQuery {
+          allFile(filter: {relativePath: {eq: "effico-logo.png"}}) {
+            edges {
+              node {
+                id
+                relativePath
+                childImageSharp {
+                  fixed(width: 230) {
+                    ...GatsbyImageSharpFixed
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        `}
+      render={data => (
+        <>
+          <Img className="block mx-auto" fixed={data.allFile.edges[0].node.childImageSharp.fixed} />
+        </>
+      )}
+    />
+
   </header>
 )
 

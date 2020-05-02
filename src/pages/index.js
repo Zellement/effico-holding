@@ -1,6 +1,9 @@
 import React from "react"
-import SEO from "../components/seo"
+import { graphql } from "gatsby"
 import { motion } from 'framer-motion'
+import { FaEnvelope, FaPhone } from 'react-icons/fa';
+import SEO from "../components/seo"
+import Img from 'gatsby-image'
 
 const duration = 0.35
 
@@ -21,22 +24,24 @@ const item = {
   },
 }
 
-const IndexPage = () => {
+const IndexPage = ( {data} ) => {
   return (
     <>
-      <SEO title="Home" />
+      <SEO title="Effico Ltd - New Website Coming Soon!" />
       <motion.section
         variants={container}
         initial="hidden" 
         animate="visible"
-        className="container"
       >
         <motion.div 
           className="content"
           variants={item}
           transition="easeInOut"
         >
-          <p className="text-lg md:text-xl pl-3 border-l-2 border-black">An opinionated starter for Gatsby v2 with TailwindCSS, PostCSS and Framer Motion page transitions.</p>
+          <p className="m-0 text-primary font-bold text-center p-4">
+            <span className="text-lg md:text-2xl block">Domestic & Commercial</span>
+            <span className="text-2xl md:text-5xl block">Electrical Contractors</span>
+          </p>
         </motion.div>
 
         <motion.div 
@@ -44,7 +49,11 @@ const IndexPage = () => {
           variants={item}
           transition="easeInOut"
         >
-          <hr className="block my-8" />
+          <p className="m-0 text-primary font-bold text-center p-4">
+            <span className="inline-block"><a href="mailto:enquiries@effico.ltd"><FaEnvelope className="inline" /> enquiries@effico.ltd</a></span>
+            <span className="inline-block mx-4">&bull;</span>
+            <span className="inline-block"><a href="tel:01157751060"><FaPhone className="inline" /> 0115 775 1060</a></span>
+          </p>
         </motion.div>
 
         <motion.div 
@@ -52,11 +61,20 @@ const IndexPage = () => {
           variants={item}
           transition="easeInOut"
         >
-          <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <div className="p-8 max-w-3xl mx-auto">
+            <p>Effico are a professional and highly-experienced team of NICEIC-approved electrical and cooling engineers based in the East Midlands.</p>
+            <p>Specialising in both commercial and domestic electrical works, we are proud to have delivered fast-paced, high-quality projects for a number of clients locally and nationwide.</p>
+            <p>Founded in 2017, Lukasz and the team have over 30 years combined experience in order to provide superior levels of service and workmanship to every project – from design all the way through to implementation.</p>
+          </div>
 
-          <h2>Lorem ipsum dolor sit amet</h2>
-          
-          <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <div className="md:flex">
+          <>
+            {data.allImageSharp.edges.map(edge => 
+              <Img className="block md:w-1/3" key={edge.node.id} fluid={edge.node.fluid} />
+            )}
+          </>
+          </div>
+
         </motion.div>
       </motion.section>
     </>
@@ -64,3 +82,20 @@ const IndexPage = () => {
 }
 
 export default IndexPage
+
+
+export const query = graphql`
+query GalQ {
+  allImageSharp(filter: {fluid: {originalName: {nin: "effico-logo.png"}}}) {
+    edges {
+      node {
+        id
+        fluid {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+  }
+}
+
+`
