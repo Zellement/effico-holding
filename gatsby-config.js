@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby x Tailwind x Framer Motion`,
-    description: `An opinionated starter for Gatsby v2 with TailwindCSS, PostCSS and Framer Motion page transitions.`,
-    author: `@samuelgoddard`,
+    title: `Effico Ltd`,
+    description: `Electrical Contractors.`,
+    author: `@Zellement`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -30,8 +30,8 @@ module.exports = {
         name: `gatsby-starter-default`,
         short_name: `starter`,
         start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
+        background_color: `#1792BE`,
+        theme_color: `#1792BE`,
         display: `minimal-ui`,
         icon: `src/images/effico-logo.png`,
       },
